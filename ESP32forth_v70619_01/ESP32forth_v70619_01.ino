@@ -27,6 +27,8 @@
  *       : usecs ( n -- ) us-ticks >r begin pause us-ticks r@ - over >= until rdrop drop ;
  *    [THEN]
  * and some lines in OledInit   
+ * _02 adding random and randomseed from Arduino
+ 
  */
 
 #define STACK_CELLS 512
@@ -502,7 +504,9 @@ static cell_t ResizeFile(cell_t fd, cell_t size);
   Y(digitalWrite, digitalWrite(n1, n0); DROPn(2)) \
   Y(digitalRead, n0 = digitalRead(n0)) \
   Y(analogRead, n0 = analogRead(n0)) \
-  Y(pulseIn, n0 = pulseIn(n2, n1, n0); NIPn(2))
+  Y(pulseIn, n0 = pulseIn(n2, n1, n0); NIPn(2)) \
+  Y(randomseed, randomseed(n0);DROPn(1)) \
+  Y(random, n0 = random(n1, n0))
 
 #define REQUIRED_FILES_SUPPORT \
   X("R/O", R_O, PUSH O_RDONLY) \
